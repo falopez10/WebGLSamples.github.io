@@ -117,16 +117,19 @@ function CreateApp() {
 
   // -- Setup Instances ----------------------------------
   var instances = [];
-  for (var ii = 0; ii < 60; ++ii) {
+  for (var ii = 0; ii < 15; ++ii) {
     instances.push({
       x: 0,
       y: 0,
       z: 0,
       colorMult: new Float32Array([Math.random(), Math.random(), Math.random(), 1]),
+      //se selecciona modelo, esfera(0), cubo(1) o cono(2)
       modelIndex: Math.floor(Math.random() * models.length),
+      //distancia a recorrer en cada eje
       xRadius: Math.random() * 5,
       yRadius: Math.random() * 5,
       zRadius: Math.random() * 5,
+      //velocidad, segun tiempo
       xClockSpeed: (Math.random() + 0.5),
       yClockSpeed: (Math.random() + 0.5),
       zClockSpeed: (Math.random() + 0.5),
@@ -283,6 +286,7 @@ function CreateApp() {
       m4.mul(worldViewProjection, world, viewProjection);
       m4.inverse(worldInverse, world);
       m4.transpose(worldInverseTranspose, worldInverse);
+      //le da color a la forma 
       uniqueUniforms.colorMult = instance.colorMult;
       model.drawPrep();
       model.draw(uniqueUniforms);
